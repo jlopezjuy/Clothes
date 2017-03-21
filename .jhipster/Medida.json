@@ -1,0 +1,94 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "cliente",
+            "otherEntityName": "cliente",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "contornoBusto",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "anchoPecho",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "altoBusto",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "bajoBusto",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "alturaPinza",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "separacionBusto",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "talleDeltantero",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "talleEspalda",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "largoCorset",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "costado",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "hombro",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "anchoHombro",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "largoManga",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "sisa",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "cintura",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "anteCadera",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "cadera",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "largoPollera",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "fechaMedida",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "changelogDate": "20170313030953",
+    "entityTableName": "medida",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

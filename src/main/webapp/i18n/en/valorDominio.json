@@ -1,0 +1,24 @@
+{
+    "clothesApp": {
+        "valorDominio" : {
+            "home": {
+                "title": "Valor Dominios",
+                "createLabel": "Create a new Valor Dominio",
+                "createOrEditLabel": "Create or edit a Valor Dominio"
+            },
+            "created": "A new Valor Dominio is created with identifier {{ param }}",
+            "updated": "A Valor Dominio is updated with identifier {{ param }}",
+            "deleted": "A Valor Dominio is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Valor Dominio {{ id }}?"
+            },
+            "detail": {
+                "title": "Valor Dominio"
+            },
+            "descripcion": "Descripcion",
+            "dominio": "Dominio",
+            "tipoEvento": "Tipo Evento",
+            "estado": "Estado"
+        }
+    }
+}

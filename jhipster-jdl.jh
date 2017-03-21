@@ -1,0 +1,85 @@
+
+
+
+
+entity Cliente{
+	nombre String,
+	apellido String,
+	celular String,
+	telefono String,
+	email String,
+	domicilio String,
+	colegio String
+}
+
+entity Modelo{
+	imagen ImageBlob,
+    nombreModelo String,
+    colorVestido String,
+    observacion String
+}
+
+entity Medida{
+	contornoBusto Double,
+    anchoPecho Double,
+    altoBusto Double,
+    bajoBusto Double,
+    alturaPinza Double,
+    separacionBusto Double,
+    talleDeltantero Double,
+    talleEspalda Double,
+    largoCorset Double,
+    costado Double,
+    hombro Double,
+    anchoHombro Double,
+    largoManga Double,
+    sisa Double,
+    cintura Double,
+    anteCadera Double,
+    cadera Double,
+    largoPollera Double,
+    fechaMedida LocalDate
+}
+
+entity Dominio{
+	descripcion String
+}
+entity ValorDominio{
+	descripcion String
+}
+
+entity Encargo{
+	importeTotal Double,
+    fechaEncargo LocalDate,
+    fechaEntrega LocalDate,
+    detalleVestido String
+}
+
+entity Pago{
+	fechaPago LocalDate,
+    importe Double,
+    detalle String,
+    numeroRecibo Integer
+}
+
+
+/**
+  * Relacion Una empresa tiene uno o muchos usuarios
+  */
+relationship OneToMany {
+    Cliente{modelo(nombre)} to Modelo,
+    Cliente{medida(nombre)} to Medida,
+    Cliente{encargo(nombre)} to Encargo,
+    Encargo{pago} to Pago,
+    Dominio{valorDominio(descripcion)} to ValorDominio,
+    ValorDominio{tipoEvento(descripcion)} to Encargo{tipoEcargo(descripcion)},
+    ValorDominio{estado(descripcion)} to Encargo{estado(descripcion)}
+}
+
+/**relationship OneToOne{
+ *Cliente{user} to User{cliente}
+ *}
+ */
+
+
+paginate Cliente with infinite-scroll
