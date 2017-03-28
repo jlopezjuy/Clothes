@@ -62,7 +62,7 @@ public class DominioResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-            DominioResource dominioResource = new DominioResource(dominioRepository);
+        DominioResource dominioResource = new DominioResource(dominioRepository);
         this.restDominioMockMvc = MockMvcBuilders.standaloneSetup(dominioResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -77,7 +77,7 @@ public class DominioResourceIntTest {
      */
     public static Dominio createEntity(EntityManager em) {
         Dominio dominio = new Dominio()
-                .descripcion(DEFAULT_DESCRIPCION);
+            .descripcion(DEFAULT_DESCRIPCION);
         return dominio;
     }
 
@@ -92,7 +92,6 @@ public class DominioResourceIntTest {
         int databaseSizeBeforeCreate = dominioRepository.findAll().size();
 
         // Create the Dominio
-
         restDominioMockMvc.perform(post("/api/dominios")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(dominio)))
@@ -111,13 +110,12 @@ public class DominioResourceIntTest {
         int databaseSizeBeforeCreate = dominioRepository.findAll().size();
 
         // Create the Dominio with an existing ID
-        Dominio existingDominio = new Dominio();
-        existingDominio.setId(1L);
+        dominio.setId(1L);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restDominioMockMvc.perform(post("/api/dominios")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(existingDominio)))
+            .content(TestUtil.convertObjectToJsonBytes(dominio)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -171,7 +169,7 @@ public class DominioResourceIntTest {
         // Update the dominio
         Dominio updatedDominio = dominioRepository.findOne(dominio.getId());
         updatedDominio
-                .descripcion(UPDATED_DESCRIPCION);
+            .descripcion(UPDATED_DESCRIPCION);
 
         restDominioMockMvc.perform(put("/api/dominios")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -221,6 +219,7 @@ public class DominioResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(Dominio.class);
     }

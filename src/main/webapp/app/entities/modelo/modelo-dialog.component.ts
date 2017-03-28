@@ -9,6 +9,7 @@ import { Modelo } from './modelo.model';
 import { ModeloPopupService } from './modelo-popup.service';
 import { ModeloService } from './modelo.service';
 import { Cliente, ClienteService } from '../cliente';
+
 @Component({
     selector: 'jhi-modelo-dialog',
     templateUrl: './modelo-dialog.component.html'
@@ -66,10 +67,12 @@ export class ModeloDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.modelo.id !== undefined) {
             this.modeloService.update(this.modelo)
-                .subscribe((res: Modelo) => this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
+                .subscribe((res: Modelo) =>
+                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
         } else {
             this.modeloService.create(this.modelo)
-                .subscribe((res: Modelo) => this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
+                .subscribe((res: Modelo) =>
+                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
         }
     }
 

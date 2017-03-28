@@ -1,6 +1,6 @@
 {
   "generator-jhipster": {
-    "jhipsterVersion": "4.0.7",
+    "jhipsterVersion": "4.1.1",
     "baseName": "Clothes",
     "packageName": "ar.com.clothes",
     "packageFolder": "ar/com/clothes",

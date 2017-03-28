@@ -73,7 +73,7 @@ public class EncargoResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-            EncargoResource encargoResource = new EncargoResource(encargoRepository);
+        EncargoResource encargoResource = new EncargoResource(encargoRepository);
         this.restEncargoMockMvc = MockMvcBuilders.standaloneSetup(encargoResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -88,10 +88,10 @@ public class EncargoResourceIntTest {
      */
     public static Encargo createEntity(EntityManager em) {
         Encargo encargo = new Encargo()
-                .importeTotal(DEFAULT_IMPORTE_TOTAL)
-                .fechaEncargo(DEFAULT_FECHA_ENCARGO)
-                .fechaEntrega(DEFAULT_FECHA_ENTREGA)
-                .detalleVestido(DEFAULT_DETALLE_VESTIDO);
+            .importeTotal(DEFAULT_IMPORTE_TOTAL)
+            .fechaEncargo(DEFAULT_FECHA_ENCARGO)
+            .fechaEntrega(DEFAULT_FECHA_ENTREGA)
+            .detalleVestido(DEFAULT_DETALLE_VESTIDO);
         return encargo;
     }
 
@@ -106,7 +106,6 @@ public class EncargoResourceIntTest {
         int databaseSizeBeforeCreate = encargoRepository.findAll().size();
 
         // Create the Encargo
-
         restEncargoMockMvc.perform(post("/api/encargos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(encargo)))
@@ -128,13 +127,12 @@ public class EncargoResourceIntTest {
         int databaseSizeBeforeCreate = encargoRepository.findAll().size();
 
         // Create the Encargo with an existing ID
-        Encargo existingEncargo = new Encargo();
-        existingEncargo.setId(1L);
+        encargo.setId(1L);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restEncargoMockMvc.perform(post("/api/encargos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(existingEncargo)))
+            .content(TestUtil.convertObjectToJsonBytes(encargo)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -194,10 +192,10 @@ public class EncargoResourceIntTest {
         // Update the encargo
         Encargo updatedEncargo = encargoRepository.findOne(encargo.getId());
         updatedEncargo
-                .importeTotal(UPDATED_IMPORTE_TOTAL)
-                .fechaEncargo(UPDATED_FECHA_ENCARGO)
-                .fechaEntrega(UPDATED_FECHA_ENTREGA)
-                .detalleVestido(UPDATED_DETALLE_VESTIDO);
+            .importeTotal(UPDATED_IMPORTE_TOTAL)
+            .fechaEncargo(UPDATED_FECHA_ENCARGO)
+            .fechaEntrega(UPDATED_FECHA_ENTREGA)
+            .detalleVestido(UPDATED_DETALLE_VESTIDO);
 
         restEncargoMockMvc.perform(put("/api/encargos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -250,6 +248,7 @@ public class EncargoResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(Encargo.class);
     }

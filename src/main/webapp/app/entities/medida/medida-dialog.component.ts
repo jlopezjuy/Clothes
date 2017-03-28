@@ -9,6 +9,7 @@ import { Medida } from './medida.model';
 import { MedidaPopupService } from './medida-popup.service';
 import { MedidaService } from './medida.service';
 import { Cliente, ClienteService } from '../cliente';
+
 @Component({
     selector: 'jhi-medida-dialog',
     templateUrl: './medida-dialog.component.html'
@@ -45,10 +46,12 @@ export class MedidaDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.medida.id !== undefined) {
             this.medidaService.update(this.medida)
-                .subscribe((res: Medida) => this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
+                .subscribe((res: Medida) =>
+                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
         } else {
             this.medidaService.create(this.medida)
-                .subscribe((res: Medida) => this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
+                .subscribe((res: Medida) =>
+                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
         }
     }
 
