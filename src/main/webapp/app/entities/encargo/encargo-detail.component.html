@@ -1,0 +1,55 @@
+
+<div *ngIf="encargo">
+    <h2><span jhiTranslate="clothesApp.encargo.detail.title">Encargo</span> {{encargo.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="clothesApp.encargo.importeTotal">Importe Total</span></dt>
+        <dd>
+            <span>{{encargo.importeTotal}}</span>
+        </dd>
+        <dt><span jhiTranslate="clothesApp.encargo.fechaEncargo">Fecha Encargo</span></dt>
+        <dd>
+            <span>{{encargo.fechaEncargo | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="clothesApp.encargo.fechaEntrega">Fecha Entrega</span></dt>
+        <dd>
+            <span>{{encargo.fechaEntrega | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="clothesApp.encargo.detalleVestido">Detalle Vestido</span></dt>
+        <dd>
+            <span>{{encargo.detalleVestido}}</span>
+        </dd>
+        <dt><span jhiTranslate="clothesApp.encargo.cliente">Cliente</span></dt>
+        <dd>
+            <div *ngIf="encargo.cliente">
+                <a [routerLink]="['/cliente', encargo.cliente?.id]">{{encargo.cliente?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="clothesApp.encargo.tipoEcargo">Tipo Ecargo</span></dt>
+        <dd>
+            <div *ngIf="encargo.tipoEcargo">
+                <a [routerLink]="['/valor-dominio', encargo.tipoEcargo?.id]">{{encargo.tipoEcargo?.descripcion}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="clothesApp.encargo.estado">Estado</span></dt>
+        <dd>
+            <div *ngIf="encargo.estado">
+                <a [routerLink]="['/valor-dominio', encargo.estado?.id]">{{encargo.estado?.descripcion}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'encargo/'+ encargo.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

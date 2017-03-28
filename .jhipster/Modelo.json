@@ -1,0 +1,35 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "cliente",
+            "otherEntityName": "cliente",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "imagen",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "nombreModelo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "colorVestido",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "observacion",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170313030953",
+    "entityTableName": "modelo",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

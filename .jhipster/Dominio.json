@@ -1,0 +1,22 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "valorDominio",
+            "otherEntityName": "valorDominio",
+            "otherEntityRelationshipName": "dominio"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170313030953",
+    "entityTableName": "dominio",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

@@ -1,0 +1,80 @@
+
+
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myEncargoLabel" jhiTranslate="clothesApp.encargo.home.createOrEditLabel">Create or edit a Encargo</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!encargo.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="encargo.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="clothesApp.encargo.importeTotal" for="field_importeTotal">Importe Total</label>
+            <input type="number" class="form-control" name="importeTotal" id="field_importeTotal"
+                [(ngModel)]="encargo.importeTotal"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="clothesApp.encargo.fechaEncargo" for="field_fechaEncargo">Fecha Encargo</label>
+            <div class="input-group">
+                <input id="field_fechaEncargo" type="text" class="form-control" name="fechaEncargo" ngbDatepicker  #fechaEncargoDp="ngbDatepicker" [(ngModel)]="encargo.fechaEncargo"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="fechaEncargoDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="clothesApp.encargo.fechaEntrega" for="field_fechaEntrega">Fecha Entrega</label>
+            <div class="input-group">
+                <input id="field_fechaEntrega" type="text" class="form-control" name="fechaEntrega" ngbDatepicker  #fechaEntregaDp="ngbDatepicker" [(ngModel)]="encargo.fechaEntrega"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="fechaEntregaDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="clothesApp.encargo.detalleVestido" for="field_detalleVestido">Detalle Vestido</label>
+            <input type="text" class="form-control" name="detalleVestido" id="field_detalleVestido"
+                [(ngModel)]="encargo.detalleVestido"
+             />
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="clothesApp.encargo.cliente" for="field_cliente">Cliente</label>
+            <select class="form-control" id="field_cliente" name="cliente" [(ngModel)]="encargo.cliente" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="clienteOption.id === encargo.cliente?.id ? encargo.cliente : clienteOption" *ngFor="let clienteOption of clientes; trackBy: trackClienteById">{{clienteOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="clothesApp.encargo.tipoEcargo" for="field_tipoEcargo">Tipo Ecargo</label>
+            <select class="form-control" id="field_tipoEcargo" name="tipoEcargo" [(ngModel)]="encargo.tipoEcargo" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="valorDominioOption.id === encargo.tipoEcargo?.id ? encargo.tipoEcargo : valorDominioOption" *ngFor="let valorDominioOption of valordominios; trackBy: trackValorDominioById">{{valorDominioOption.descripcion}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="clothesApp.encargo.estado" for="field_estado">Estado</label>
+            <select class="form-control" id="field_estado" name="estado" [(ngModel)]="encargo.estado" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="valorDominioOption.id === encargo.estado?.id ? encargo.estado : valorDominioOption" *ngFor="let valorDominioOption of valordominios; trackBy: trackValorDominioById">{{valorDominioOption.descripcion}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,71 @@
+
+
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myModeloLabel" jhiTranslate="clothesApp.modelo.home.createOrEditLabel">Create or edit a Modelo</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!modelo.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="modelo.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="clothesApp.modelo.imagen" for="field_imagen">Imagen</label>
+            <div>
+                <img [src]="'data:' + modelo.imagenContentType + ';base64,' + modelo.imagen" style="max-height: 100px;" *ngIf="modelo.imagen" alt="modelo image"/>
+                <div *ngIf="modelo.imagen" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{modelo.imagenContentType}}, {{byteSize(modelo.imagen)}}</span>
+                    <button type="button" (click)="modelo.imagen=null;modelo.imagenContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" (change)="setFileData($event, modelo, 'imagen', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+            </div>
+            <input type="hidden" class="form-control" name="imagen" id="field_imagen"
+                [(ngModel)]="modelo.imagen"
+             />
+            <input type="hidden" class="form-control" name="imagenContentType" id="field_imagenContentType"
+                [(ngModel)]="modelo.imagenContentType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="clothesApp.modelo.nombreModelo" for="field_nombreModelo">Nombre Modelo</label>
+            <input type="text" class="form-control" name="nombreModelo" id="field_nombreModelo"
+                [(ngModel)]="modelo.nombreModelo"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="clothesApp.modelo.colorVestido" for="field_colorVestido">Color Vestido</label>
+            <input type="text" class="form-control" name="colorVestido" id="field_colorVestido"
+                [(ngModel)]="modelo.colorVestido"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="clothesApp.modelo.observacion" for="field_observacion">Observacion</label>
+            <input type="text" class="form-control" name="observacion" id="field_observacion"
+                [(ngModel)]="modelo.observacion"
+             />
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="clothesApp.modelo.cliente" for="field_cliente">Cliente</label>
+            <select class="form-control" id="field_cliente" name="cliente" [(ngModel)]="modelo.cliente" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="clienteOption.id === modelo.cliente?.id ? modelo.cliente : clienteOption" *ngFor="let clienteOption of clientes; trackBy: trackClienteById">{{clienteOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

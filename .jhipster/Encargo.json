@@ -1,0 +1,52 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "cliente",
+            "otherEntityName": "cliente",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "pago",
+            "otherEntityName": "pago",
+            "otherEntityRelationshipName": "encargo"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "tipoEcargo",
+            "otherEntityName": "valorDominio",
+            "otherEntityField": "descripcion"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "estado",
+            "otherEntityName": "valorDominio",
+            "otherEntityField": "descripcion"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "importeTotal",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "fechaEncargo",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "fechaEntrega",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "detalleVestido",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170313030953",
+    "entityTableName": "encargo",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

@@ -1,0 +1,31 @@
+
+<div *ngIf="valorDominio">
+    <h2><span jhiTranslate="clothesApp.valorDominio.detail.title">Valor Dominio</span> {{valorDominio.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="clothesApp.valorDominio.descripcion">Descripcion</span></dt>
+        <dd>
+            <span>{{valorDominio.descripcion}}</span>
+        </dd>
+        <dt><span jhiTranslate="clothesApp.valorDominio.dominio">Dominio</span></dt>
+        <dd>
+            <div *ngIf="valorDominio.dominio">
+                <a [routerLink]="['/dominio', valorDominio.dominio?.id]">{{valorDominio.dominio?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'valor-dominio/'+ valorDominio.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,22 @@
+{
+    "clothesApp": {
+        "dominio" : {
+            "home": {
+                "title": "Dominios",
+                "createLabel": "Crear nuevo Dominio",
+                "createOrEditLabel": "Crear o editar Dominio"
+            },
+            "created": "Un nuevo Dominio ha sido creado con el identificador {{ param }}",
+            "updated": "Un Dominio ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Dominio ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Dominio {{ id }}?"
+            },
+            "detail": {
+                "title": "Dominio"
+            },
+            "descripcion": "Descripcion",
+            "valorDominio": "Valor Dominio"
+        }
+    }
+}

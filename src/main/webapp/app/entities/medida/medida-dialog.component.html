@@ -1,0 +1,152 @@
+
+
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myMedidaLabel" jhiTranslate="clothesApp.medida.home.createOrEditLabel">Create or edit a Medida</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!medida.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="medida.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="clothesApp.medida.contornoBusto" for="field_contornoBusto">Contorno Busto</label>
+            <input type="number" class="form-control" name="contornoBusto" id="field_contornoBusto"
+                [(ngModel)]="medida.contornoBusto"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="clothesApp.medida.anchoPecho" for="field_anchoPecho">Ancho Pecho</label>
+            <input type="number" class="form-control" name="anchoPecho" id="field_anchoPecho"
+                [(ngModel)]="medida.anchoPecho"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="clothesApp.medida.altoBusto" for="field_altoBusto">Alto Busto</label>
+            <input type="number" class="form-control" name="altoBusto" id="field_altoBusto"
+                [(ngModel)]="medida.altoBusto"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="clothesApp.medida.bajoBusto" for="field_bajoBusto">Bajo Busto</label>
+            <input type="number" class="form-control" name="bajoBusto" id="field_bajoBusto"
+                [(ngModel)]="medida.bajoBusto"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="clothesApp.medida.alturaPinza" for="field_alturaPinza">Altura Pinza</label>
+            <input type="number" class="form-control" name="alturaPinza" id="field_alturaPinza"
+                [(ngModel)]="medida.alturaPinza"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="clothesApp.medida.separacionBusto" for="field_separacionBusto">Separacion Busto</label>
+            <input type="number" class="form-control" name="separacionBusto" id="field_separacionBusto"
+                [(ngModel)]="medida.separacionBusto"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="clothesApp.medida.talleDeltantero" for="field_talleDeltantero">Talle Deltantero</label>
+            <input type="number" class="form-control" name="talleDeltantero" id="field_talleDeltantero"
+                [(ngModel)]="medida.talleDeltantero"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="clothesApp.medida.talleEspalda" for="field_talleEspalda">Talle Espalda</label>
+            <input type="number" class="form-control" name="talleEspalda" id="field_talleEspalda"
+                [(ngModel)]="medida.talleEspalda"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="clothesApp.medida.largoCorset" for="field_largoCorset">Largo Corset</label>
+            <input type="number" class="form-control" name="largoCorset" id="field_largoCorset"
+                [(ngModel)]="medida.largoCorset"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="clothesApp.medida.costado" for="field_costado">Costado</label>
+            <input type="number" class="form-control" name="costado" id="field_costado"
+                [(ngModel)]="medida.costado"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="clothesApp.medida.hombro" for="field_hombro">Hombro</label>
+            <input type="number" class="form-control" name="hombro" id="field_hombro"
+                [(ngModel)]="medida.hombro"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="clothesApp.medida.anchoHombro" for="field_anchoHombro">Ancho Hombro</label>
+            <input type="number" class="form-control" name="anchoHombro" id="field_anchoHombro"
+                [(ngModel)]="medida.anchoHombro"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="clothesApp.medida.largoManga" for="field_largoManga">Largo Manga</label>
+            <input type="number" class="form-control" name="largoManga" id="field_largoManga"
+                [(ngModel)]="medida.largoManga"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="clothesApp.medida.sisa" for="field_sisa">Sisa</label>
+            <input type="number" class="form-control" name="sisa" id="field_sisa"
+                [(ngModel)]="medida.sisa"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="clothesApp.medida.cintura" for="field_cintura">Cintura</label>
+            <input type="number" class="form-control" name="cintura" id="field_cintura"
+                [(ngModel)]="medida.cintura"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="clothesApp.medida.anteCadera" for="field_anteCadera">Ante Cadera</label>
+            <input type="number" class="form-control" name="anteCadera" id="field_anteCadera"
+                [(ngModel)]="medida.anteCadera"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="clothesApp.medida.cadera" for="field_cadera">Cadera</label>
+            <input type="number" class="form-control" name="cadera" id="field_cadera"
+                [(ngModel)]="medida.cadera"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="clothesApp.medida.largoPollera" for="field_largoPollera">Largo Pollera</label>
+            <input type="number" class="form-control" name="largoPollera" id="field_largoPollera"
+                [(ngModel)]="medida.largoPollera"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="clothesApp.medida.fechaMedida" for="field_fechaMedida">Fecha Medida</label>
+            <div class="input-group">
+                <input id="field_fechaMedida" type="text" class="form-control" name="fechaMedida" ngbDatepicker  #fechaMedidaDp="ngbDatepicker" [(ngModel)]="medida.fechaMedida"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="fechaMedidaDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="clothesApp.medida.cliente" for="field_cliente">Cliente</label>
+            <select class="form-control" id="field_cliente" name="cliente" [(ngModel)]="medida.cliente" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="clienteOption.id === medida.cliente?.id ? medida.cliente : clienteOption" *ngFor="let clienteOption of clientes; trackBy: trackClienteById">{{clienteOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>
