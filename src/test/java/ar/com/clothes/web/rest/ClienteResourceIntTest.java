@@ -80,7 +80,7 @@ public class ClienteResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-            ClienteResource clienteResource = new ClienteResource(clienteRepository);
+        ClienteResource clienteResource = new ClienteResource(clienteRepository);
         this.restClienteMockMvc = MockMvcBuilders.standaloneSetup(clienteResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -95,13 +95,13 @@ public class ClienteResourceIntTest {
      */
     public static Cliente createEntity(EntityManager em) {
         Cliente cliente = new Cliente()
-                .nombre(DEFAULT_NOMBRE)
-                .apellido(DEFAULT_APELLIDO)
-                .celular(DEFAULT_CELULAR)
-                .telefono(DEFAULT_TELEFONO)
-                .email(DEFAULT_EMAIL)
-                .domicilio(DEFAULT_DOMICILIO)
-                .colegio(DEFAULT_COLEGIO);
+            .nombre(DEFAULT_NOMBRE)
+            .apellido(DEFAULT_APELLIDO)
+            .celular(DEFAULT_CELULAR)
+            .telefono(DEFAULT_TELEFONO)
+            .email(DEFAULT_EMAIL)
+            .domicilio(DEFAULT_DOMICILIO)
+            .colegio(DEFAULT_COLEGIO);
         return cliente;
     }
 
@@ -116,7 +116,6 @@ public class ClienteResourceIntTest {
         int databaseSizeBeforeCreate = clienteRepository.findAll().size();
 
         // Create the Cliente
-
         restClienteMockMvc.perform(post("/api/clientes")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(cliente)))
@@ -141,13 +140,12 @@ public class ClienteResourceIntTest {
         int databaseSizeBeforeCreate = clienteRepository.findAll().size();
 
         // Create the Cliente with an existing ID
-        Cliente existingCliente = new Cliente();
-        existingCliente.setId(1L);
+        cliente.setId(1L);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restClienteMockMvc.perform(post("/api/clientes")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(existingCliente)))
+            .content(TestUtil.convertObjectToJsonBytes(cliente)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -213,13 +211,13 @@ public class ClienteResourceIntTest {
         // Update the cliente
         Cliente updatedCliente = clienteRepository.findOne(cliente.getId());
         updatedCliente
-                .nombre(UPDATED_NOMBRE)
-                .apellido(UPDATED_APELLIDO)
-                .celular(UPDATED_CELULAR)
-                .telefono(UPDATED_TELEFONO)
-                .email(UPDATED_EMAIL)
-                .domicilio(UPDATED_DOMICILIO)
-                .colegio(UPDATED_COLEGIO);
+            .nombre(UPDATED_NOMBRE)
+            .apellido(UPDATED_APELLIDO)
+            .celular(UPDATED_CELULAR)
+            .telefono(UPDATED_TELEFONO)
+            .email(UPDATED_EMAIL)
+            .domicilio(UPDATED_DOMICILIO)
+            .colegio(UPDATED_COLEGIO);
 
         restClienteMockMvc.perform(put("/api/clientes")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -275,6 +273,7 @@ public class ClienteResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(Cliente.class);
     }

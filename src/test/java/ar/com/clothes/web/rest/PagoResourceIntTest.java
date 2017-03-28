@@ -73,7 +73,7 @@ public class PagoResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-            PagoResource pagoResource = new PagoResource(pagoRepository);
+        PagoResource pagoResource = new PagoResource(pagoRepository);
         this.restPagoMockMvc = MockMvcBuilders.standaloneSetup(pagoResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -88,10 +88,10 @@ public class PagoResourceIntTest {
      */
     public static Pago createEntity(EntityManager em) {
         Pago pago = new Pago()
-                .fechaPago(DEFAULT_FECHA_PAGO)
-                .importe(DEFAULT_IMPORTE)
-                .detalle(DEFAULT_DETALLE)
-                .numeroRecibo(DEFAULT_NUMERO_RECIBO);
+            .fechaPago(DEFAULT_FECHA_PAGO)
+            .importe(DEFAULT_IMPORTE)
+            .detalle(DEFAULT_DETALLE)
+            .numeroRecibo(DEFAULT_NUMERO_RECIBO);
         return pago;
     }
 
@@ -106,7 +106,6 @@ public class PagoResourceIntTest {
         int databaseSizeBeforeCreate = pagoRepository.findAll().size();
 
         // Create the Pago
-
         restPagoMockMvc.perform(post("/api/pagos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(pago)))
@@ -128,13 +127,12 @@ public class PagoResourceIntTest {
         int databaseSizeBeforeCreate = pagoRepository.findAll().size();
 
         // Create the Pago with an existing ID
-        Pago existingPago = new Pago();
-        existingPago.setId(1L);
+        pago.setId(1L);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restPagoMockMvc.perform(post("/api/pagos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(existingPago)))
+            .content(TestUtil.convertObjectToJsonBytes(pago)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -194,10 +192,10 @@ public class PagoResourceIntTest {
         // Update the pago
         Pago updatedPago = pagoRepository.findOne(pago.getId());
         updatedPago
-                .fechaPago(UPDATED_FECHA_PAGO)
-                .importe(UPDATED_IMPORTE)
-                .detalle(UPDATED_DETALLE)
-                .numeroRecibo(UPDATED_NUMERO_RECIBO);
+            .fechaPago(UPDATED_FECHA_PAGO)
+            .importe(UPDATED_IMPORTE)
+            .detalle(UPDATED_DETALLE)
+            .numeroRecibo(UPDATED_NUMERO_RECIBO);
 
         restPagoMockMvc.perform(put("/api/pagos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -250,6 +248,7 @@ public class PagoResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(Pago.class);
     }

@@ -11,6 +11,7 @@ import { ClienteService } from './cliente.service';
 import { Modelo, ModeloService } from '../modelo';
 import { Medida, MedidaService } from '../medida';
 import { Encargo, EncargoService } from '../encargo';
+
 @Component({
     selector: 'jhi-cliente-dialog',
     templateUrl: './cliente-dialog.component.html'
@@ -57,10 +58,12 @@ export class ClienteDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.cliente.id !== undefined) {
             this.clienteService.update(this.cliente)
-                .subscribe((res: Cliente) => this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
+                .subscribe((res: Cliente) =>
+                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
         } else {
             this.clienteService.create(this.cliente)
-                .subscribe((res: Cliente) => this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
+                .subscribe((res: Cliente) =>
+                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
         }
     }
 

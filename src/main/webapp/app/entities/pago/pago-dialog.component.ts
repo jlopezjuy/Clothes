@@ -9,6 +9,7 @@ import { Pago } from './pago.model';
 import { PagoPopupService } from './pago-popup.service';
 import { PagoService } from './pago.service';
 import { Encargo, EncargoService } from '../encargo';
+
 @Component({
     selector: 'jhi-pago-dialog',
     templateUrl: './pago-dialog.component.html'
@@ -42,10 +43,12 @@ export class PagoDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.pago.id !== undefined) {
             this.pagoService.update(this.pago)
-                .subscribe((res: Pago) => this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
+                .subscribe((res: Pago) =>
+                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
         } else {
             this.pagoService.create(this.pago)
-                .subscribe((res: Pago) => this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
+                .subscribe((res: Pago) =>
+                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
         }
     }
 

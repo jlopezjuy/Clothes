@@ -74,7 +74,7 @@ public class ModeloResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-            ModeloResource modeloResource = new ModeloResource(modeloRepository);
+        ModeloResource modeloResource = new ModeloResource(modeloRepository);
         this.restModeloMockMvc = MockMvcBuilders.standaloneSetup(modeloResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -89,11 +89,11 @@ public class ModeloResourceIntTest {
      */
     public static Modelo createEntity(EntityManager em) {
         Modelo modelo = new Modelo()
-                .imagen(DEFAULT_IMAGEN)
-                .imagenContentType(DEFAULT_IMAGEN_CONTENT_TYPE)
-                .nombreModelo(DEFAULT_NOMBRE_MODELO)
-                .colorVestido(DEFAULT_COLOR_VESTIDO)
-                .observacion(DEFAULT_OBSERVACION);
+            .imagen(DEFAULT_IMAGEN)
+            .imagenContentType(DEFAULT_IMAGEN_CONTENT_TYPE)
+            .nombreModelo(DEFAULT_NOMBRE_MODELO)
+            .colorVestido(DEFAULT_COLOR_VESTIDO)
+            .observacion(DEFAULT_OBSERVACION);
         return modelo;
     }
 
@@ -108,7 +108,6 @@ public class ModeloResourceIntTest {
         int databaseSizeBeforeCreate = modeloRepository.findAll().size();
 
         // Create the Modelo
-
         restModeloMockMvc.perform(post("/api/modelos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(modelo)))
@@ -131,13 +130,12 @@ public class ModeloResourceIntTest {
         int databaseSizeBeforeCreate = modeloRepository.findAll().size();
 
         // Create the Modelo with an existing ID
-        Modelo existingModelo = new Modelo();
-        existingModelo.setId(1L);
+        modelo.setId(1L);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restModeloMockMvc.perform(post("/api/modelos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(existingModelo)))
+            .content(TestUtil.convertObjectToJsonBytes(modelo)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -199,11 +197,11 @@ public class ModeloResourceIntTest {
         // Update the modelo
         Modelo updatedModelo = modeloRepository.findOne(modelo.getId());
         updatedModelo
-                .imagen(UPDATED_IMAGEN)
-                .imagenContentType(UPDATED_IMAGEN_CONTENT_TYPE)
-                .nombreModelo(UPDATED_NOMBRE_MODELO)
-                .colorVestido(UPDATED_COLOR_VESTIDO)
-                .observacion(UPDATED_OBSERVACION);
+            .imagen(UPDATED_IMAGEN)
+            .imagenContentType(UPDATED_IMAGEN_CONTENT_TYPE)
+            .nombreModelo(UPDATED_NOMBRE_MODELO)
+            .colorVestido(UPDATED_COLOR_VESTIDO)
+            .observacion(UPDATED_OBSERVACION);
 
         restModeloMockMvc.perform(put("/api/modelos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -257,6 +255,7 @@ public class ModeloResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(Modelo.class);
     }

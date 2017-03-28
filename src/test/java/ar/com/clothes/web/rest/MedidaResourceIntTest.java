@@ -118,7 +118,7 @@ public class MedidaResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-            MedidaResource medidaResource = new MedidaResource(medidaRepository);
+        MedidaResource medidaResource = new MedidaResource(medidaRepository);
         this.restMedidaMockMvc = MockMvcBuilders.standaloneSetup(medidaResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -133,25 +133,25 @@ public class MedidaResourceIntTest {
      */
     public static Medida createEntity(EntityManager em) {
         Medida medida = new Medida()
-                .contornoBusto(DEFAULT_CONTORNO_BUSTO)
-                .anchoPecho(DEFAULT_ANCHO_PECHO)
-                .altoBusto(DEFAULT_ALTO_BUSTO)
-                .bajoBusto(DEFAULT_BAJO_BUSTO)
-                .alturaPinza(DEFAULT_ALTURA_PINZA)
-                .separacionBusto(DEFAULT_SEPARACION_BUSTO)
-                .talleDeltantero(DEFAULT_TALLE_DELTANTERO)
-                .talleEspalda(DEFAULT_TALLE_ESPALDA)
-                .largoCorset(DEFAULT_LARGO_CORSET)
-                .costado(DEFAULT_COSTADO)
-                .hombro(DEFAULT_HOMBRO)
-                .anchoHombro(DEFAULT_ANCHO_HOMBRO)
-                .largoManga(DEFAULT_LARGO_MANGA)
-                .sisa(DEFAULT_SISA)
-                .cintura(DEFAULT_CINTURA)
-                .anteCadera(DEFAULT_ANTE_CADERA)
-                .cadera(DEFAULT_CADERA)
-                .largoPollera(DEFAULT_LARGO_POLLERA)
-                .fechaMedida(DEFAULT_FECHA_MEDIDA);
+            .contornoBusto(DEFAULT_CONTORNO_BUSTO)
+            .anchoPecho(DEFAULT_ANCHO_PECHO)
+            .altoBusto(DEFAULT_ALTO_BUSTO)
+            .bajoBusto(DEFAULT_BAJO_BUSTO)
+            .alturaPinza(DEFAULT_ALTURA_PINZA)
+            .separacionBusto(DEFAULT_SEPARACION_BUSTO)
+            .talleDeltantero(DEFAULT_TALLE_DELTANTERO)
+            .talleEspalda(DEFAULT_TALLE_ESPALDA)
+            .largoCorset(DEFAULT_LARGO_CORSET)
+            .costado(DEFAULT_COSTADO)
+            .hombro(DEFAULT_HOMBRO)
+            .anchoHombro(DEFAULT_ANCHO_HOMBRO)
+            .largoManga(DEFAULT_LARGO_MANGA)
+            .sisa(DEFAULT_SISA)
+            .cintura(DEFAULT_CINTURA)
+            .anteCadera(DEFAULT_ANTE_CADERA)
+            .cadera(DEFAULT_CADERA)
+            .largoPollera(DEFAULT_LARGO_POLLERA)
+            .fechaMedida(DEFAULT_FECHA_MEDIDA);
         return medida;
     }
 
@@ -166,7 +166,6 @@ public class MedidaResourceIntTest {
         int databaseSizeBeforeCreate = medidaRepository.findAll().size();
 
         // Create the Medida
-
         restMedidaMockMvc.perform(post("/api/medidas")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(medida)))
@@ -203,13 +202,12 @@ public class MedidaResourceIntTest {
         int databaseSizeBeforeCreate = medidaRepository.findAll().size();
 
         // Create the Medida with an existing ID
-        Medida existingMedida = new Medida();
-        existingMedida.setId(1L);
+        medida.setId(1L);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restMedidaMockMvc.perform(post("/api/medidas")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(existingMedida)))
+            .content(TestUtil.convertObjectToJsonBytes(medida)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -299,25 +297,25 @@ public class MedidaResourceIntTest {
         // Update the medida
         Medida updatedMedida = medidaRepository.findOne(medida.getId());
         updatedMedida
-                .contornoBusto(UPDATED_CONTORNO_BUSTO)
-                .anchoPecho(UPDATED_ANCHO_PECHO)
-                .altoBusto(UPDATED_ALTO_BUSTO)
-                .bajoBusto(UPDATED_BAJO_BUSTO)
-                .alturaPinza(UPDATED_ALTURA_PINZA)
-                .separacionBusto(UPDATED_SEPARACION_BUSTO)
-                .talleDeltantero(UPDATED_TALLE_DELTANTERO)
-                .talleEspalda(UPDATED_TALLE_ESPALDA)
-                .largoCorset(UPDATED_LARGO_CORSET)
-                .costado(UPDATED_COSTADO)
-                .hombro(UPDATED_HOMBRO)
-                .anchoHombro(UPDATED_ANCHO_HOMBRO)
-                .largoManga(UPDATED_LARGO_MANGA)
-                .sisa(UPDATED_SISA)
-                .cintura(UPDATED_CINTURA)
-                .anteCadera(UPDATED_ANTE_CADERA)
-                .cadera(UPDATED_CADERA)
-                .largoPollera(UPDATED_LARGO_POLLERA)
-                .fechaMedida(UPDATED_FECHA_MEDIDA);
+            .contornoBusto(UPDATED_CONTORNO_BUSTO)
+            .anchoPecho(UPDATED_ANCHO_PECHO)
+            .altoBusto(UPDATED_ALTO_BUSTO)
+            .bajoBusto(UPDATED_BAJO_BUSTO)
+            .alturaPinza(UPDATED_ALTURA_PINZA)
+            .separacionBusto(UPDATED_SEPARACION_BUSTO)
+            .talleDeltantero(UPDATED_TALLE_DELTANTERO)
+            .talleEspalda(UPDATED_TALLE_ESPALDA)
+            .largoCorset(UPDATED_LARGO_CORSET)
+            .costado(UPDATED_COSTADO)
+            .hombro(UPDATED_HOMBRO)
+            .anchoHombro(UPDATED_ANCHO_HOMBRO)
+            .largoManga(UPDATED_LARGO_MANGA)
+            .sisa(UPDATED_SISA)
+            .cintura(UPDATED_CINTURA)
+            .anteCadera(UPDATED_ANTE_CADERA)
+            .cadera(UPDATED_CADERA)
+            .largoPollera(UPDATED_LARGO_POLLERA)
+            .fechaMedida(UPDATED_FECHA_MEDIDA);
 
         restMedidaMockMvc.perform(put("/api/medidas")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -385,6 +383,7 @@ public class MedidaResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(Medida.class);
     }

@@ -11,6 +11,7 @@ import { EncargoService } from './encargo.service';
 import { Cliente, ClienteService } from '../cliente';
 import { Pago, PagoService } from '../pago';
 import { ValorDominio, ValorDominioService } from '../valor-dominio';
+
 @Component({
     selector: 'jhi-encargo-dialog',
     templateUrl: './encargo-dialog.component.html'
@@ -63,10 +64,12 @@ export class EncargoDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.encargo.id !== undefined) {
             this.encargoService.update(this.encargo)
-                .subscribe((res: Encargo) => this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
+                .subscribe((res: Encargo) =>
+                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
         } else {
             this.encargoService.create(this.encargo)
-                .subscribe((res: Encargo) => this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
+                .subscribe((res: Encargo) =>
+                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
         }
     }
 

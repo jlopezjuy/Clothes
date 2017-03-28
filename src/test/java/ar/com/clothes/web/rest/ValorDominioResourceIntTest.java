@@ -3,7 +3,6 @@ package ar.com.clothes.web.rest;
 import ar.com.clothes.ClothesApp;
 
 import ar.com.clothes.domain.ValorDominio;
-import ar.com.clothes.repository.DominioRepository;
 import ar.com.clothes.repository.ValorDominioRepository;
 import ar.com.clothes.web.rest.errors.ExceptionTranslator;
 
@@ -43,8 +42,6 @@ public class ValorDominioResourceIntTest {
 
     @Autowired
     private ValorDominioRepository valorDominioRepository;
-    @Autowired
-    private DominioRepository dominioRepository;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -65,7 +62,7 @@ public class ValorDominioResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-            ValorDominioResource valorDominioResource = new ValorDominioResource(valorDominioRepository, dominioRepository);
+        ValorDominioResource valorDominioResource = new ValorDominioResource(valorDominioRepository);
         this.restValorDominioMockMvc = MockMvcBuilders.standaloneSetup(valorDominioResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -80,7 +77,7 @@ public class ValorDominioResourceIntTest {
      */
     public static ValorDominio createEntity(EntityManager em) {
         ValorDominio valorDominio = new ValorDominio()
-                .descripcion(DEFAULT_DESCRIPCION);
+            .descripcion(DEFAULT_DESCRIPCION);
         return valorDominio;
     }
 
@@ -95,7 +92,6 @@ public class ValorDominioResourceIntTest {
         int databaseSizeBeforeCreate = valorDominioRepository.findAll().size();
 
         // Create the ValorDominio
-
         restValorDominioMockMvc.perform(post("/api/valor-dominios")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(valorDominio)))
@@ -114,13 +110,12 @@ public class ValorDominioResourceIntTest {
         int databaseSizeBeforeCreate = valorDominioRepository.findAll().size();
 
         // Create the ValorDominio with an existing ID
-        ValorDominio existingValorDominio = new ValorDominio();
-        existingValorDominio.setId(1L);
+        valorDominio.setId(1L);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restValorDominioMockMvc.perform(post("/api/valor-dominios")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(existingValorDominio)))
+            .content(TestUtil.convertObjectToJsonBytes(valorDominio)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -174,7 +169,7 @@ public class ValorDominioResourceIntTest {
         // Update the valorDominio
         ValorDominio updatedValorDominio = valorDominioRepository.findOne(valorDominio.getId());
         updatedValorDominio
-                .descripcion(UPDATED_DESCRIPCION);
+            .descripcion(UPDATED_DESCRIPCION);
 
         restValorDominioMockMvc.perform(put("/api/valor-dominios")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -224,6 +219,7 @@ public class ValorDominioResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(ValorDominio.class);
     }

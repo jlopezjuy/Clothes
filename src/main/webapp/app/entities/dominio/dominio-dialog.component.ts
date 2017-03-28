@@ -9,6 +9,7 @@ import { Dominio } from './dominio.model';
 import { DominioPopupService } from './dominio-popup.service';
 import { DominioService } from './dominio.service';
 import { ValorDominio, ValorDominioService } from '../valor-dominio';
+
 @Component({
     selector: 'jhi-dominio-dialog',
     templateUrl: './dominio-dialog.component.html'
@@ -45,10 +46,12 @@ export class DominioDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.dominio.id !== undefined) {
             this.dominioService.update(this.dominio)
-                .subscribe((res: Dominio) => this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
+                .subscribe((res: Dominio) =>
+                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
         } else {
             this.dominioService.create(this.dominio)
-                .subscribe((res: Dominio) => this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
+                .subscribe((res: Dominio) =>
+                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
         }
     }
 
