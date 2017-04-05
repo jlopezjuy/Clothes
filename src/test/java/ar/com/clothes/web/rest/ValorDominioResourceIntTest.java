@@ -3,6 +3,7 @@ package ar.com.clothes.web.rest;
 import ar.com.clothes.ClothesApp;
 
 import ar.com.clothes.domain.ValorDominio;
+import ar.com.clothes.repository.DominioRepository;
 import ar.com.clothes.repository.ValorDominioRepository;
 import ar.com.clothes.web.rest.errors.ExceptionTranslator;
 
@@ -42,6 +43,8 @@ public class ValorDominioResourceIntTest {
 
     @Autowired
     private ValorDominioRepository valorDominioRepository;
+    @Autowired
+    private DominioRepository dominioRepository;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -62,7 +65,7 @@ public class ValorDominioResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        ValorDominioResource valorDominioResource = new ValorDominioResource(valorDominioRepository);
+        ValorDominioResource valorDominioResource = new ValorDominioResource(valorDominioRepository, dominioRepository);
         this.restValorDominioMockMvc = MockMvcBuilders.standaloneSetup(valorDominioResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
